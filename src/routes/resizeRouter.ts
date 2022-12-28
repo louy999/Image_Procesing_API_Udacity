@@ -21,7 +21,17 @@ resizeRouter.get('/', async (req: Request, res: Response) => {
 			error: 'Please specify width  values',
 		})
 	}
+	if (!Number(width)) {
+		return res.status(400).json({
+			error: 'Please write width number',
+		})
+	}
 	if (!height) {
+		return res.status(400).json({
+			error: 'Please specify height values',
+		})
+	}
+	if (!Number(height)) {
 		return res.status(400).json({
 			error: 'Please specify height values',
 		})

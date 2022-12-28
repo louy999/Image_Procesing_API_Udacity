@@ -26,6 +26,6 @@ function isImageAvailable(fileName) {
 exports.isImageAvailable = isImageAvailable;
 function getImageName(fileName, width, height, fileExtension) {
     if (fileExtension === void 0) { fileExtension = 'jpg'; }
-    return "".concat(fileName, "_").concat(width, "x").concat(height, ".").concat(fileExtension);
+    return "".concat(fileName, "_").concat(width, "_").concat(height, ".").concat(fileExtension);
 }
 exports.getImageName = getImageName;

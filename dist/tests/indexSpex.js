@@ -39,57 +39,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var path_1 = __importDefault(require("path"));
-var utils_1 = require("../utils");
-var resizeImage_1 = __importDefault(require("../utils/resizeImage"));
-var resizeRouter = express_1.default.Router();
-resizeRouter.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var fileName, fileExtension, width, height, imageAvailable, fullFileName, requestedSizeAvailable;
-    return __generator(this, function (_a) {
-        fileName = req.query.name && req.query.name.split('.')[0];
-        fileExtension = req.query.fileExtension || 'jpg';
-        width = req.query.width;
-        height = req.query.height;
-        if (!fileName) {
-            return [2, res.status(400).json({
-                    error: 'Please specify the file name',
-                })];
-        }
-        if (!width) {
-            return [2, res.status(400).json({
-                    error: 'Please specify width  values',
-                })];
-        }
-        if (!height) {
-            return [2, res.status(400).json({
-                    error: 'Please specify height values',
-                })];
-        }
-        imageAvailable = (0, utils_1.isImageAvailable)(fileName + '.' + fileExtension);
-        if (!imageAvailable) {
-            return [2, res.status(404).json({
-                    error: 'The requested image is not available',
-                })];
-        }
-        fullFileName = (0, utils_1.getImageName)(fileName, width, height, fileExtension);
-        requestedSizeAvailable = (0, utils_1.isImageAvailable)(fullFileName);
-        if (requestedSizeAvailable) {
-            console.log('Image already available, returning cached image');
-            return [2, res
-                    .status(200)
-                    .sendFile(path_1.default.join(__dirname, '/../images/', fullFileName))];
-        }
-        (0, resizeImage_1.default)(fileName, fileExtension, parseInt(width), parseInt(height), path_1.default.join(__dirname, '/../images'), path_1.default.join(__dirname, '../images/thumbnails/'))
-            .then(function (filePath) { return res.sendFile(filePath); })
-            .catch(function (error) {
-            console.log(error);
-            res.json({
-                error: 'Image could not be resized',
-                success: false,
-            });
+var supertest_1 = __importDefault(require("supertest"));
+var resizeRouter_1 = __importDefault(require("../routes/resizeRouter"));
+var request = (0, supertest_1.default)(resizeRouter_1.default);
+describe('Test endpoint responses', function () {
+    it('gets the api endpoint', function (done) { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, request.get('/api')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    done();
+                    return [2];
+            }
         });
-        return [2];
-    });
-}); });
-exports.default = resizeRouter;
+    }); });
+});

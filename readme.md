@@ -1,6 +1,6 @@
 # **_How to Work_**
 
-### write in url name img and width and hight like => 172.0.0.1:3000/api<mark>?name=img1&width=100&height=100</mark>
+### write in url name img and width and hight like => 172.0.0.1:3000/resize<mark>?name=img1&width=100&height=100</mark>
 
 # **_Depend & devDepend_**
 
