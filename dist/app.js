@@ -13,4 +13,7 @@ app.use('/resize', resizeRouter_1.default);
 app.get('/test', function (req, res) {
     res.send('Hello world!');
 });
+app.get('/', function (req, res) {
+    res.send('please write url like => http://localhost:4000/resize?name={imgName}&width={Width}&height={Height}&fileExtension={FileExtension}');
+});
 exports.default = app;
