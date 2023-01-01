@@ -40,8 +40,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var app_1 = __importDefault(require("../app"));
-var supertest_1 = __importDefault(require("supertest"));
 var data_1 = require("../utils/data");
+var supertest_1 = __importDefault(require("supertest"));
+var request = (0, supertest_1.default)(app_1.default);
 describe('Test the endpoint response', function () {
     it('test against the actual resize endpoint, with the correct URL and proper parameters', function () { return __awaiter(void 0, void 0, void 0, function () {
         var randomItem, res;
@@ -49,7 +50,7 @@ describe('Test the endpoint response', function () {
             switch (_a.label) {
                 case 0:
                     randomItem = Math.floor(Math.random() * data_1.data.length);
-                    return [4, (0, supertest_1.default)(app_1.default).get("/resize?name=".concat(data_1.data[randomItem], "&width=200&height=200"))];
+                    return [4, request.get("/resize?name=".concat(data_1.data[randomItem], "&width=200&height=200"))];
                 case 1:
                     res = _a.sent();
                     expect(res.statusCode).toEqual(200);

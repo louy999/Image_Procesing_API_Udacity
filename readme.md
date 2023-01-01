@@ -1,6 +1,6 @@
 # **_How to Work_**
 
-### write in url name img and width and hight like => 172.0.0.1:3000/resize<mark>?name=img1&width=100&height=100</mark>
+### write in url name img , width , hight and {ExtinctionFile if you don't write extinction is default .jpg} like => 172.0.0.1:3000/resize<mark>?name=img1&width=100&height=100</mark>
 
 # **_Depend & devDepend_**
 
@@ -16,33 +16,23 @@
 
 ### 6- **_eslint-config_** <br>
 
-### 7- **_int-plugin-prettier_** <br>
+### 7- **_eslint-plugin-prettier_** <br>
 
 ### 8- **_nodemon_** <br>
 
 ### 9- **_prettier_** <br>
 
-### 10- **_s-node_** <br>
+### 10- **_ts-node_** <br>
 
 ### 11- **_typescript_** <br>
 
 ### 12- **_@types/sharp"_** <br>
 
-### 13- **_cors_** <br>
-
 ### 14- **_express_** <br>
-
-### 15- **_express-fileupload"_** <br>
-
-### 16- **_fs_** <br>
 
 ### 17- **_jasmine_** <br>
 
 ### 18- **_jasmine-spec-reporter_** <br>
-
-### 19- **_path_** <br>
-
-### 20- **_require-main-filename_** <br>
 
 ### 21- **_sharp_** <br>
 
