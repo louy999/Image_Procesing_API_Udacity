@@ -16,8 +16,8 @@ const resizeImage = (
 		)
 		const outputFile = `${outputPath}/${getImageName(
 			fileName,
-			width,
-			height,
+			Number(width),
+			Number(height),
 			fileExtension
 		)}`
 		const writeStream = fs.createWriteStream(outputFile)

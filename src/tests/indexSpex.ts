@@ -1,18 +1,14 @@
-import supertest from 'supertest'
-import resizeRouter from '../routes/resizeRouter'
-const request = supertest(resizeRouter)
-describe('Test endpoint responses', () => {
-	it('gets the api endpoint', async (done) => {
-		const response = await request.get('/resize')
-		expect(response.status).toBe(200)
-		done()
-	})
-})
+import app from '../app'
+import request from 'supertest'
+import {data} from '../utils/data'
 
-import resizeImage from '../utils/resize_image'
-const resizeImage = supertest(resizeImage)
-describe('Tests for resizeImage function', () => {
-	it('should be defined', () => {
-		expect(resizeImage).toBeDefined
+describe('Test the endpoint response', () => {
+	it('test against the actual resize endpoint, with the correct URL and proper parameters', async (): Promise<void> => {
+		const randomItem = Math.floor(Math.random() * data.length)
+
+		const res = await request(app).get(
+			`/resize?name=${data[randomItem]}&width=200&height=200`
+		)
+		expect(res.statusCode).toEqual(200)
 	})
 })

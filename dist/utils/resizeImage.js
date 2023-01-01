@@ -10,7 +10,7 @@ var resizeImage = function (fileName, fileExtension, width, height, inputPath, o
     if (fileExtension === void 0) { fileExtension = 'jpg'; }
     return new Promise(function (resolve, reject) {
         var readStream = fs_1.default.createReadStream("".concat(inputPath, "/").concat(fileName, ".").concat(fileExtension));
-        var outputFile = "".concat(outputPath, "/").concat((0, index_1.getImageName)(fileName, width, height, fileExtension));
+        var outputFile = "".concat(outputPath, "/").concat((0, index_1.getImageName)(fileName, Number(width), Number(height), fileExtension));
         var writeStream = fs_1.default.createWriteStream(outputFile);
         console.log('Resizing the image...');
         var transformer = (0, sharp_1.default)().resize(width, height);
