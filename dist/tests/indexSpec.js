@@ -41,11 +41,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var resizeImage_1 = __importDefault(require("../utils/resizeImage"));
 var path_1 = __importDefault(require("path"));
+var app_1 = __importDefault(require("../app"));
+var supertest_1 = __importDefault(require("supertest"));
+var data_1 = require("../utils/data");
+describe('Test the endpoint response', function () {
+    it('test against the actual resize endpoint, with the correct URL and proper parameters', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var randomItem, res;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    randomItem = Math.floor(Math.random() * data_1.data.length);
+                    return [4, (0, supertest_1.default)(app_1.default).get("/resize?name=".concat(data_1.data[randomItem], "&width=200&height=200"))];
+                case 1:
+                    res = _a.sent();
+                    expect(res.status).toEqual(200);
+                    return [2];
+            }
+        });
+    }); });
+});
 describe('Test image processing function', function () {
     it('Resolves successfully with right name / width / height', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, expectAsync((0, resizeImage_1.default)("img2", 'jpg', 1000, 1000, path_1.default.join(__dirname, '/../../src/images'), path_1.default.join(__dirname, '/../../src/images/thumbnails'))).toBeResolved()];
+                case 0: return [4, expectAsync((0, resizeImage_1.default)("img2", 'jpg', 1000, 1000, path_1.default.join(__dirname, '/../images'), path_1.default.join(__dirname, '/../images/thumbnails'))).toBeResolved()];
                 case 1:
                     _a.sent();
                     return [2];
