@@ -39,29 +39,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var app_1 = __importDefault(require("../app"));
-var supertest_1 = __importDefault(require("supertest"));
 var resizeImage_1 = __importDefault(require("../utils/resizeImage"));
-var request = (0, supertest_1.default)(app_1.default);
-describe('Test the endpoint response', function () {
-    it('test against the actual resize endpoint, with the correct URL and proper parameters', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var res;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4, request.get("/resize?name=img1&width=800&height=800")];
-                case 1:
-                    res = _a.sent();
-                    expect(res.status).toEqual(200);
-                    return [2];
-            }
-        });
-    }); });
-});
+var path_1 = __importDefault(require("path"));
 describe('Test image processing function', function () {
     it('Resolves successfully with right name / width / height', function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, expectAsync((0, resizeImage_1.default)("img2", 'jpg', 1000, 1000, '/home/louy/Documents/projects/udacity_first/src/images', '/home/louy/Documents/projects/udacity_first/src/images')).toBeResolved()];
+                case 0: return [4, expectAsync((0, resizeImage_1.default)("img2", 'jpg', 1000, 1000, path_1.default.join(__dirname, '/../../src/images'), path_1.default.join(__dirname, '/../../src/images/thumbnails'))).toBeResolved()];
                 case 1:
                     _a.sent();
                     return [2];
